@@ -1,0 +1,35 @@
+.navbar {
+    margin-bottom: 2rem;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.blog-header {
+    padding-bottom: 1.25rem;
+    margin-bottom: 2rem;
+    border-bottom: .05rem solid #eee;
+}
+
+.blog-title {
+    margin-bottom: 0;
+    font-size: 3.5rem;
+    font-weight: normal;
+}
+
+.blog-description {
+    font-size: 1.1rem;
+    color: #999;
+}
+
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+.well {
+    background-color:#CCC;
+    padding: 20px;
+    border-radius: 20px;
+}

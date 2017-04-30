@@ -9,33 +9,37 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" href="">
-        <link rel="stylesheet" href="">
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <title>@yield('title', 'Blog')</title>
-        <style>
-            .navbar {
-                margin-bottom: 2rem;
-            }
-            .text-right {
-                text-align: right;
-            }
-        </style>
     </head>
 
     <body>
 
         <nav class="navbar navbar-fixed navbar-toggleable-md navbar-inverse bg-primary">
 
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a href="/" class="navbar-brand">Blog</a>
+            <div class="container">
 
-            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <a href="/" class="navbar-brand">Blog</a>
+
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+
+                </div>
 
             </div>
 
         </nav>
+
+        <div class="blog-header">
+            <div class="container">
+                <h1 class="blog-title">LaraBlog</h1>
+                <p class="lead blog-description">Bienvenu sur le LaraBlog</p>
+            </div>
+        </div>
 
         <div class="container">
             @yield('content')
