@@ -4,11 +4,8 @@
 
     <div class="row">
 
-        <div class="col-sm-8 blog-main">
-            @foreach($posts as $post)
-                <h2>{{ $post->name }}</h2>
-                <p>{{ $post->content }}</p>
-            @endforeach
+        <div class="col-sm-8">
+            @include('posts.form', ['post' => new \App\Post()])
         </div>
 
         <div class="col-sm-3 offset-sm-1 ">
@@ -21,6 +18,17 @@
             </div>
         </div>
 
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-sm-8">
+            @foreach($posts as $post)
+                <h2>{{ $post->name }}</h2>
+                <p>{{ $post->content }}</p>
+            @endforeach
+        </div>
     </div>
 
 @stop

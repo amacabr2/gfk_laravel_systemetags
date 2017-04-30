@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'PostController@index');
+
+Route::resource('posts', 'PostsController');
