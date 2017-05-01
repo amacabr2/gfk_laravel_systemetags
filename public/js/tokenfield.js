@@ -1,6 +1,7 @@
 $('#tokenfield').tokenfield({
     autocomplete: {
-        source: ['red','blue','green','yellow','violet','brown','purple','black','white'],
+        source: "/api/tags",
+        minLength: 1,
         delay: 100
     },
     showAutocompleteOnFocus: true
