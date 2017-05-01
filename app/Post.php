@@ -21,6 +21,7 @@ class Post extends Model
     /**
      * Save tags for post
      * @param String $tags
+     * @return bool
      */
     public function saveTags(String $tags) {
 
@@ -29,6 +30,10 @@ class Post extends Model
         }, explode(',', $tags))), function ($item) {
             return !empty($item);
         });
+
+        if (empty($tags)) {
+            return false;
+        }
 
         $persistedTags = Tag::whereIn('name', $tags)->get();
         $tagsToCreate = array_diff($tags, $persistedTags->pluck('name')->all());

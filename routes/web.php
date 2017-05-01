@@ -13,4 +13,4 @@
 
 Route::get('/', 'PostController@index');
 
-Route::resource('posts', 'PostsController');
+Route::resource('posts', 'PostController');

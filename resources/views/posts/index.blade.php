@@ -26,6 +26,11 @@
         <div class="col-sm-8">
             @foreach($posts as $post)
                 <h2>{{ $post->name }}</h2>
+                <p>
+                    @foreach($post->tags as $tag)
+                        <a href="#" class="badge badge-default">{{ $tag->name }}</a>
+                    @endforeach
+                </p>
                 <p>{{ $post->content }}</p>
             @endforeach
         </div>

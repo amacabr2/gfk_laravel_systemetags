@@ -2,6 +2,8 @@
 
 <form action="{{ route('posts.store') }}" method="post">
 
+    {{ csrf_field() }}
+
     <div class="form-group">
         <input type="text" class="form-control" name="name" value="{{ old('name', $post->name) }}" placeholder="Titre de l'article">
     </div>

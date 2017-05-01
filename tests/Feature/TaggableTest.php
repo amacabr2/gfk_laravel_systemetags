@@ -29,6 +29,15 @@ class TaggableTest extends TestCase {
     }
 
     /**
+     * Test when we do not add tags during the creation of a comment
+     */
+    public function testEmptyTags() {
+        $post = factory(Post::class)->create();
+        $post->saveTags('');
+        $this->assertEquals(0, Tag::count());
+    }
+
+    /**
      * Test if a tag not recreated not so one created an article with an already existing tag
      */
     public function testReuseTags() {
