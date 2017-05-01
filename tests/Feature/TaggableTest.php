@@ -35,8 +35,8 @@ class TaggableTest extends TestCase {
         $posts = factory(Post::class, 2)->create();
         $post1 = $posts->first();
         $post2 = $posts->last();
-        $post1->saveTags('salut,chien,chat');
-        $post2->saveTags('salut,chameau');
+        $post1->saveTags('salut ,chien, chat');
+        $post2->saveTags('salut, chameau');
         $this->assertEquals(4, Tag::count());
         $this->assertEquals(3, DB::table('post_tag')->where('post_id', $post1->id)->count());
         $this->assertEquals(2, DB::table('post_tag')->where('post_id', $post2->id)->count());

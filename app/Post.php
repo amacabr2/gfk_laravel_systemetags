@@ -23,7 +23,9 @@ class Post extends Model
      * @param String $tags
      */
     public function saveTags(String $tags) {
-        $tags = explode(',', $tags);
+        $tags = array_map(function ($item) {
+            return trim($item);
+        }, explode(',', $tags));
         $persistedTags = Tag::whereIn('name', $tags)->get();
         $tagsToCreate = array_diff($tags, $persistedTags->pluck('name')->all());
         $tagsToCreate = array_map(function ($tag) {
