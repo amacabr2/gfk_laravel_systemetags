@@ -1,6 +1,8 @@
-$('#tokenfield').tokenfield({
+$tokenField = $('#tokenfield');
+
+$tokenField.tokenfield({
     autocomplete: {
-        source: "/api/tags",
+        source: $tokenField.data('url'),
         minLength: 1,
         delay: 100
     },

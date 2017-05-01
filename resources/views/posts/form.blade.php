@@ -13,7 +13,7 @@
     </div>
 
     <div class="form-group">
-        <input type="text" id="tokenfield" class="form-control" name="tags" value="{{ old('tags') }}" placeholder="Tags de l'article">
+        <input data-url="{{ route('tags.index') }}" type="text" id="tokenfield" class="form-control" name="tags" value="{{ old('tags') }}" placeholder="Tags de l'article">
     </div>
 
     <button class="btn btn-primary">Envoyer</button>
