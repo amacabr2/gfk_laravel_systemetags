@@ -90,4 +90,15 @@ class TaggableTest extends TestCase {
         $this->assertEquals(0, Tag::count());
     }
 
+    /**
+     * Test when delete post
+     */
+    public function testDeletePost() {
+        $post = factory(Post::class)->create();
+        $post->saveTags('salut,chien,chat');
+        $this->assertEquals(3, Tag::count());
+        $post->delete();
+        $this->assertEquals(0, Tag::count());
+    }
+
 }

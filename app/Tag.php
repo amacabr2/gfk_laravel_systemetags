@@ -18,4 +18,8 @@ class Tag extends Model
         return $this->belongsToMany(Post::class);
     }
 
+    public static function removeUnused() {
+        return static::where('post_count', 0)->delete();
+    }
+
 }
