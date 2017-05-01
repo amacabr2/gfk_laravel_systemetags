@@ -11,24 +11,31 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index() {
-        $posts = Post::with('tags')->paginate(5);
-        return view('posts.index', [
-           'posts' => $posts
-        ]);
+        return $this->renderIndex((new Post())->newQuery());
     }
 
     /**
-     *
+     * Show comments with the same tag
      *
      * @param $slug
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function tag($slug) {
         $tag = Tag::where('slug', $slug)->first();
-        $posts = $tag->posts()->paginate(5);
+        return $this->renderIndex($tag->posts());
+    }
+
+    /**
+     * Show index
+     *
+     * @param $postQuery
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    private function renderIndex($postQuery) {
+        $posts = $postQuery->with('tags')->paginate(5);
         return view('posts.index', [
             'posts' => $posts
         ]);

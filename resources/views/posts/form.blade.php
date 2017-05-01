@@ -9,9 +9,7 @@
     </div>
 
     <div class="form-group">
-        <textarea class="form-control" name="content" placeholder="Contenu de l'article">
-            {{ old('content', $post->content) }}
-        </textarea>
+        <textarea class="form-control" name="content" placeholder="Contenu de l'article">{{ old('content', $post->content) }}</textarea>
     </div>
 
     <div class="form-group">
