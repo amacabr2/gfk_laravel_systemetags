@@ -31,19 +31,20 @@ class Post extends Model
             return !empty($item);
         });
 
-        if (empty($tags)) {
-            return false;
-        }
-
         $persistedTags = Tag::whereIn('name', $tags)->get();
+
         $tagsToCreate = array_diff($tags, $persistedTags->pluck('name')->all());
         $tagsToCreate = array_map(function ($tag) {
-            return ['name' => $tag, 'slug' => Str::slug($tag)];
+            return ['name' => $tag, 'slug' => Str::slug($tag), 'post_count' => 1];
         }, $tagsToCreate);
 
         $createdTags = $this->tags()->createMany($tagsToCreate);
         $persistedTags = $persistedTags->merge($createdTags);
-        $this->tags()->sync($persistedTags);
+        $edits = $this->tags()->sync($persistedTags);
+
+        Tag::whereIn('id', $edits['attached'])->increment('post_count', 1);
+        Tag::whereIn('id', $edits['detached'])->decrement('post_count', 1);
+        Tag::where('post_count', 0)->delete();
 
     }
 
