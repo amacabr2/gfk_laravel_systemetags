@@ -23,17 +23,23 @@ class Post extends Model
      * @param String $tags
      */
     public function saveTags(String $tags) {
-        $tags = array_map(function ($item) {
+
+        $tags = array_filter(array_unique(array_map(function ($item) {
             return trim($item);
-        }, explode(',', $tags));
+        }, explode(',', $tags))), function ($item) {
+            return !empty($item);
+        });
+
         $persistedTags = Tag::whereIn('name', $tags)->get();
         $tagsToCreate = array_diff($tags, $persistedTags->pluck('name')->all());
         $tagsToCreate = array_map(function ($tag) {
             return ['name' => $tag, 'slug' => Str::slug($tag)];
         }, $tagsToCreate);
+
         $createdTags = $this->tags()->createMany($tagsToCreate);
         $persistedTags = $persistedTags->merge($createdTags);
         $this->tags()->sync($persistedTags);
+
     }
 
 }

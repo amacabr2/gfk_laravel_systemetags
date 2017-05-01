@@ -23,7 +23,7 @@ class TaggableTest extends TestCase {
      */
     public function testCreateTags() {
         $post = factory(Post::class)->create();
-        $post->saveTags('salut,chien,chat');
+        $post->saveTags('salut,chien,chat,chat');
         $this->assertEquals(3, Tag::count());
         $this->assertEquals(3, DB::table('post_tag')->count());
     }
@@ -35,7 +35,7 @@ class TaggableTest extends TestCase {
         $posts = factory(Post::class, 2)->create();
         $post1 = $posts->first();
         $post2 = $posts->last();
-        $post1->saveTags('salut ,chien, chat');
+        $post1->saveTags('salut ,chien, chat, , ');
         $post2->saveTags('salut, chameau');
         $this->assertEquals(4, Tag::count());
         $this->assertEquals(3, DB::table('post_tag')->where('post_id', $post1->id)->count());
