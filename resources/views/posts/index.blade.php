@@ -31,6 +31,7 @@
                     @endforeach
                 </p>
                 <p>{{ $post->content }}</p>
+                <p><a href="{{ route('posts.edit', $post) }}" class="btn btn-primary">Editer</a></p>
             @endforeach
 
             <div class="navigation">

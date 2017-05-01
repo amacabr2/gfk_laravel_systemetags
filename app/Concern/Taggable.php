@@ -27,6 +27,13 @@ trait Taggable {
     }
 
     /**
+     * Return tags for a post
+     */
+    public function getTagsListAttribute() {
+        return $this->tags->pluck('name')->implode(',');
+    }
+
+    /**
      * Save tags for post
      * @param String $tags
      */

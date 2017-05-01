@@ -1,6 +1,11 @@
 <h2>Créer un nouvelle article</h2>
 
-<form action="{{ route('posts.store') }}" method="post">
+@if($post->id)
+    <form action="{{ route('posts.update', $post) }}" method="post">
+        <input type="hidden" name="_method" value="put">
+@else
+    <form action="{{ route('posts.store') }}" method="post">
+@endif
 
     {{ csrf_field() }}
 
@@ -13,7 +18,7 @@
     </div>
 
     <div class="form-group">
-        <input data-url="{{ route('tags.index') }}" type="text" id="tokenfield" class="form-control" name="tags" value="{{ old('tags') }}" placeholder="Tags de l'article">
+        <input data-url="{{ route('tags.index') }}" type="text" id="tokenfield" class="form-control" name="tags" value="{{ old('tags', $post->tagsList) }}" placeholder="Tags de l'article">
     </div>
 
     <button class="btn btn-primary">Envoyer</button>

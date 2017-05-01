@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class PostController extends Controller
 {
@@ -48,7 +49,7 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create() {
         //
@@ -58,7 +59,7 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(Request $request) {
         $post = Post::create($request->all());
@@ -70,7 +71,7 @@ class PostController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id) {
         //
@@ -79,29 +80,33 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Post $post
+     * @return Response
+     * @internal param int $id
      */
-    public function edit($id) {
-        //
+    public function edit(Post $post) {
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param Post $post
+     * @return Response
+     * @internal param int $id
      */
-    public function update(Request $request, $id) {
-        //
+    public function update(Request $request, Post $post) {
+        $post->update($request->all());
+        $post->saveTags($request->get('tags'));
+        return redirect()->route('posts.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id) {
         //
