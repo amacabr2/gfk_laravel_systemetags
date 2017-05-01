@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
@@ -58,12 +59,14 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param PostRequest|Request $request
      * @return Response
      */
-    public function store(Request $request) {
+    public function store(PostRequest $request) {
         $post = Post::create($request->all());
-        $post->saveTags($request->get('tags'));
+        if ($request->get('tags') != null) {
+            $post->saveTags($request->get('tags'));
+        }
         return redirect()->route('posts.index')->with('success', 'Article créé');
     }
 

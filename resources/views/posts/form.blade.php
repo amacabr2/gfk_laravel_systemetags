@@ -18,7 +18,7 @@
     </div>
 
     <div class="form-group">
-        <input data-url="{{ route('tags.index') }}" type="text" id="tokenfield" class="form-control" name="tags" value="{{ old('tags', $post->tagsList) }}" placeholder="Tags de l'article">
+        <input data-url="{{ route('tags.index') }}" type="text" id="tokenfield" class="form-control" name="tags" value="{{ old('tags', $post->tagsList) }}" placeholder="Tags de l'article (mettez une virgule après chaque tag)">
     </div>
 
     <button class="btn btn-primary">Envoyer</button>
