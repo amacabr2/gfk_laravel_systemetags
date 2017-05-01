@@ -9,13 +9,10 @@
         </div>
 
         <div class="col-sm-3 offset-sm-1 ">
-            <div class="well">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid autem earum eveniet illo iusto,
-                    magnam, necessitatibus officiis porro possimus quidem recusandae sapiente sint! Ad at ducimus id
-                    placeat similique voluptatum.
-                </p>
-            </div>
+            <h2>Nuage de tags</h2>
+            @foreach($tags as $tag)
+                <a style="font-size: {{ 1 + round($tag->post_count / $max, 2) }}rem" href="{{ route('posts.tag', ['slug' => $tag->slug]) }}">{{ $tag->name }}</a>
+            @endforeach
         </div>
 
     </div>
@@ -23,6 +20,7 @@
     <hr>
 
     <div class="row">
+
         <div class="col-sm-8">
             @foreach($posts as $post)
                 <h2>{{ $post->name }}</h2>
@@ -35,6 +33,17 @@
             @endforeach
             {{ $posts->links() }}
         </div>
+
+        <div class="col-sm-3 offset-sm-1 ">
+            <div class="well">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid autem earum eveniet illo iusto,
+                    magnam, necessitatibus officiis porro possimus quidem recusandae sapiente sint! Ad at ducimus id
+                    placeat similique voluptatum.
+                </p>
+            </div>
+        </div>
+
     </div>
 
 @stop

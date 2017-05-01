@@ -36,8 +36,12 @@ class PostController extends Controller
      */
     private function renderIndex($postQuery) {
         $posts = $postQuery->with('tags')->paginate(5);
+        $tags = Tag::all();
+        $max = Tag::max('post_count');
         return view('posts.index', [
-            'posts' => $posts
+            'posts' => $posts,
+            'tags' => $tags,
+            'max' => $max
         ]);
     }
 
