@@ -6,6 +6,7 @@ use App\Post;
 use App\Tag;
 use Faker\Factory;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class TaggableTest extends TestCase {
@@ -16,7 +17,7 @@ class TaggableTest extends TestCase {
     }
 
     /**
-     * Test tags creation.
+     * Test tags creation and connection with post.
      *
      * @return void
      */
@@ -24,6 +25,7 @@ class TaggableTest extends TestCase {
         $post = factory(Post::class)->create();
         $post->saveTags('salut,chien,chat');
         $this->assertEquals(3, Tag::count());
+        $this->assertEquals(3, DB::table('post_tag')->count());
     }
 
     /**
@@ -36,6 +38,8 @@ class TaggableTest extends TestCase {
         $post1->saveTags('salut,chien,chat');
         $post2->saveTags('salut,chameau');
         $this->assertEquals(4, Tag::count());
+        $this->assertEquals(3, DB::table('post_tag')->where('post_id', $post1->id)->count());
+        $this->assertEquals(2, DB::table('post_tag')->where('post_id', $post2->id)->count());
     }
 
 }

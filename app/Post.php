@@ -29,7 +29,9 @@ class Post extends Model
         $tagsToCreate = array_map(function ($tag) {
             return ['name' => $tag, 'slug' => Str::slug($tag)];
         }, $tagsToCreate);
-        Tag::insert($tagsToCreate);
+        $createdTags = $this->tags()->createMany($tagsToCreate);
+        $persistedTags = $persistedTags->merge($createdTags);
+        $this->tags()->sync($persistedTags);
     }
 
 }
