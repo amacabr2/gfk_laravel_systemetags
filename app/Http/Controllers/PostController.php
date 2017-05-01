@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -13,9 +14,23 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $posts = Post::all();
+        $posts = Post::with('tags')->paginate(5);
         return view('posts.index', [
            'posts' => $posts
+        ]);
+    }
+
+    /**
+     *
+     *
+     * @param $slug
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function tag($slug) {
+        $tag = Tag::where('slug', $slug)->first();
+        $posts = $tag->posts()->paginate(5);
+        return view('posts.index', [
+            'posts' => $posts
         ]);
     }
 

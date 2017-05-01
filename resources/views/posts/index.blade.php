@@ -28,11 +28,12 @@
                 <h2>{{ $post->name }}</h2>
                 <p>
                     @foreach($post->tags as $tag)
-                        <a href="#" class="badge badge-default">{{ $tag->name }}</a>
+                        <a href="{{ route('posts.tag', ['slug' => $tag->slug]) }}" class="badge badge-default">{{ $tag->name }}</a>
                     @endforeach
                 </p>
                 <p>{{ $post->content }}</p>
             @endforeach
+            {{ $posts->links() }}
         </div>
     </div>
 

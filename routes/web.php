@@ -13,4 +13,6 @@
 
 Route::get('/', 'PostController@index');
 
+Route::get('/tag/{slug}', 'PostController@tag')->name('posts.tag');
+
 Route::resource('posts', 'PostController');
