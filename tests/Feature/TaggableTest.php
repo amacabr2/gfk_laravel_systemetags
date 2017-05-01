@@ -17,7 +17,7 @@ class TaggableTest extends TestCase
     }
 
     /**
-     * A basic test example.
+     * A test tags creation.
      *
      * @return void
      */
