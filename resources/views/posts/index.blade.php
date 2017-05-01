@@ -22,6 +22,7 @@
     <div class="row">
 
         <div class="col-sm-8">
+
             @foreach($posts as $post)
                 <h2>{{ $post->name }}</h2>
                 <p>
@@ -31,7 +32,11 @@
                 </p>
                 <p>{{ $post->content }}</p>
             @endforeach
-            {{ $posts->links() }}
+
+            <div class="navigation">
+                {{ $posts->links('vendor.pagination.bootstrap-4') }}
+            </div>
+
         </div>
 
         <div class="col-sm-3 offset-sm-1 ">
