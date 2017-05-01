@@ -40,7 +40,7 @@ trait Taggable {
     public function saveTags(String $tags) {
 
         $tags = array_filter(array_unique(array_map(function ($item) {
-            return trim($item);
+            return trim(strtolower($item));
         }, explode(',', $tags))), function ($item) {
             return !empty($item);
         });
