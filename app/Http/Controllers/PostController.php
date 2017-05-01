@@ -64,7 +64,7 @@ class PostController extends Controller
     public function store(Request $request) {
         $post = Post::create($request->all());
         $post->saveTags($request->get('tags'));
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('success', 'Article créé');
     }
 
     /**
@@ -99,7 +99,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post) {
         $post->update($request->all());
         $post->saveTags($request->get('tags'));
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('success', 'Article modifié');
     }
 
     /**
